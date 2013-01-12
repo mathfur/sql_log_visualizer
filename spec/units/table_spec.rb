@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe do
+describe Table do
   before do
     @name = 'users'
     @attrs = {x: 100, y: 200, r:5}
