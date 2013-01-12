@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 require 'getoptlong'
+require 'fileutils'
+require "sql_log_visualizer"
 
 usage = <<EOS
 Usage: sql_log_visualizer [options]
@@ -23,3 +25,5 @@ rescue
   puts "wrong option"
   exit
 end
+
+Server.run! :host => 'localhost',  :port => 4567
