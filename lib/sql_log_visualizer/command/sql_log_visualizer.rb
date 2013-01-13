@@ -26,4 +26,4 @@ rescue
   exit
 end
 
-Server.run! :host => 'localhost',  :port => 4567
+Server.run! :host => 'localhost', :port => 4567, :environment => :development

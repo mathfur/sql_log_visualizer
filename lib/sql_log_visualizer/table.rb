@@ -10,12 +10,10 @@ class Table
     @r = attrs['r'].to_i
   end
 
-  def to_html
+  def to_js
     [
-      "<circle id='#{@id}' cx=#{@x} cy=#{@y}",
-      " r=#{@r} stroke='black' stroke-width='2' fill='white'/>",
-      "\n",
-      "<text x='#{@x+@r}' y='#{@y-@r}'>#{@name}</text>"
-    ].join
+      "paper.circle(#{@x}, #{@y}, #{@r}).attr({'stroke': 'black', 'stroke-width': 2, 'fill': 'white'});",
+      "paper.text(#{@x+@r}, #{@y-@r}, '#{@name}');"
+    ].join("\n")
   end
 end

@@ -5,8 +5,8 @@ require 'spec_helper'
 describe 'GET /' do
   before do
     YAML.stub(:load_file).with("#{CONFIG_ROOT}/graph.yaml").and_return({
-      'users' => {:x => 100, :y => 200, :r => 5},
-      'blogs' => {:x => 50,  :y => 50,  :r => 5}
+      'users' => {'x' => 100, 'y' => 200, 'r' => 5},
+      'blogs' => {'x' => 50,  'y' => 50,  'r' => 5}
     })
     get '/'
   end
@@ -15,8 +15,8 @@ describe 'GET /' do
 
   specify { subject.ok?.should be_true }
   specify do
-    subject.body.should have_tag("svg circle[cx='100'][cy='200'][r='5']")
-    subject.body.should have_tag("svg circle[cx='50'][cy='50'][r='5']")
+    subject.body.should =~ /paper\.circle.*100.*200.*5/
+    subject.body.should =~ /paper\.circle.*50.*50.*5/
   end
 end
 
