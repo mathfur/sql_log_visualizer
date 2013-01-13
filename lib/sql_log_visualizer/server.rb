@@ -11,7 +11,7 @@ class Server < Sinatra::Base
         <title>SQL LOG VISUALIZER</title>
       </head>
       <body>
-        <svg>
+        <svg width=1000 height=1000>
           #{inner_svg}
         </svg>
       </body>

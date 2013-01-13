@@ -1,6 +1,7 @@
 require 'getoptlong'
 require 'fileutils'
 require 'sinatra/base'
+require 'yaml'
 
 require 'sql_log_visualizer/version'
 require 'sql_log_visualizer/server'
