@@ -1,6 +1,9 @@
 require "rubygems"
 
+require 'rspec'
 require 'rack/test'
+require 'rspec-html-matchers'
+
 require 'simplecov'
 require 'simplecov-rcov'
 SimpleCov.formatter = SimpleCov::Formatter::RcovFormatter

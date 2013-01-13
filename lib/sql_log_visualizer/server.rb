@@ -1,6 +1,22 @@
 class Server < Sinatra::Base
   get '/' do
-    'this is a index5'
+    graph_conf = YAML.load_file("#{CONFIG_ROOT}/graph.yaml")
+    inner_svg = graph_conf.map do |table_name, attrs|
+      Table.new(table_name, attrs).to_html
+    end.join("\n")
+
+    <<-EOS
+    <html>
+      <head>
+        <title>SQL LOG VISUALIZER</title>
+      </head>
+      <body>
+        <svg>
+          #{inner_svg}
+        </svg>
+      </body>
+    </html>
+    EOS
   end
 
   get '/reload' do

@@ -19,4 +19,3 @@ describe Edge do
     EOS
   end
 end
-

@@ -1,8 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rspec'
+gem "rspec"
 gem 'guard'
 gem 'guard-rspec'
+gem 'rspec-html-matchers'
+
+gem 'ruby-debug19'
 
 gem 'simplecov',  :require => false
 gem 'simplecov-rcov',  :require => false
