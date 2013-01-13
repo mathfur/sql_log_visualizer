@@ -10,19 +10,22 @@ class Server < Sinatra::Base
   get '/' do
     graph_conf = YAML.load_file("#{CONFIG_ROOT}/graph.yaml")
     draw_js = graph_conf.map do |table_name, attrs|
-      Table.new(table_name, attrs).to_js
+      "circles['#{table_name}'] = #{Table.new(table_name, attrs).to_js};"
     end.join("\n")
 
     <<-EOS
     <html>
       <head>
         <title>SQL LOG VISUALIZER</title>
-        <script src='/js/raphael.js' type='text/javascript'></script>
+        <script src='/javascripts/jquery-1.4.2.js' type='text/javascript'></script>
+        <script src='/javascripts/raphael.js' type='text/javascript'></script>
+        <script src="/javascripts/reload.js" type="text/javascript"></script>
       </head>
       <body>
         <script>
+        var paper = Raphael(0, 0, 1000, 1000);
+        var circles = {};
         window.onload = function(){
-          var paper = Raphael(0, 0, 1000, 1000);
           #{draw_js}
         }
         </script>
@@ -32,6 +35,6 @@ class Server < Sinatra::Base
   end
 
   get '/reload' do
-    'this is a reload5'
+    '["users"]'
   end
 end

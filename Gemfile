@@ -19,3 +19,6 @@ end
 gem 'sinatra'
 gem 'sinatra-reloader'
 gem 'rack-test'
+
+gem 'jasmine'
+gem "rake", "0.8.7"
