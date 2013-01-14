@@ -1,10 +1,14 @@
-sql_log_visualizer
+Sql Log Visualizer
 ==================
-input sql query log to show in browser
+The sql_log_visualizer input sql query log to show in browser graphically.
 
 Usage
 ------
-
+Add the coordinates of table names to config/graph.yaml, then
+```shell
+$ sql_log_visualizer --target-file=sql.log
+```
+Then open http://localhost:4567/ in browser.
 
 License
 ----------

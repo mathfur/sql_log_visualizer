@@ -5,8 +5,10 @@ require 'fileutils'
 require "sql_log_visualizer"
 
 usage = <<EOS
-Usage: sql_log_visualizer [options]
--v --version Display version information and exit.
+Usage:
+  sql_log_visualizer --target-file=sql.log
+
+  then open http://localhost:4567/
 EOS
 
 opts = GetoptLong.new(
