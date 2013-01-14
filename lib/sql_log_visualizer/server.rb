@@ -40,6 +40,8 @@ class Server < Sinatra::Base
   end
 
   get '/reload' do
-    (options.conf[:target_file] ||= TargetFile.new(settings.target_file)).gets
+    lines = (options.conf[:target_file] ||= TargetFile.new(settings.target_file)).gets
+    table_names = lines.split("\n").map{|line| StatementParser.new(line).result[:table_names]}.flatten
+    '[' + table_names.map{|n| %Q!"#{n}"!}.join(', ') + ']'
   end
 end

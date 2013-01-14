@@ -21,6 +21,6 @@ class StatementParser
   end
 
   def erase_quotes(arr)
-    [arr].flatten.compact.map{|e| e.gsub(/['"`\r\n]/, '')}
+    [arr].flatten.compact.map{|e| e.gsub(/['"`\r\n]/, '')}.compact
   end
 end

@@ -23,7 +23,10 @@ end
 describe 'GET /reload' do
   before do
     tempfile = Tempfile.new('foo')
-    tempfile.write '[1, 2, 3]'
+    tempfile.write <<-EOS
+    (0.2ms)  SELECT "schema_migrations"."version" FROM "schema_migrations";
+    (0.3ms)  INSERT INTO 'entries' ('disclosed') VALUES (true)";
+    EOS
     tempfile.close
 
     Server.class_eval do
@@ -35,6 +38,6 @@ describe 'GET /reload' do
 
   specify do
     last_response.ok?.should be_true
-    last_response.body.should == "[1, 2, 3]"
+    last_response.body.should == '["schema_migrations", "entries"]'
   end
 end
