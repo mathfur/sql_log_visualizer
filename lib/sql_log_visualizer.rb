@@ -10,6 +10,7 @@ require 'sinatra/reloader'
 require 'yaml'
 
 require 'sql_log_visualizer/version'
+require 'sql_log_visualizer/target_file'
 require 'sql_log_visualizer/server'
 require 'sql_log_visualizer/helper'
 require 'sql_log_visualizer/table'

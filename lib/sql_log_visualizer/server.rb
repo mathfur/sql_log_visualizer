@@ -7,6 +7,11 @@ class Server < Sinatra::Base
     register Sinatra::Reloader
   end
 
+  configure do
+    # modify the following line to straight way
+    set :conf, {}
+  end
+
   get '/' do
     graph_conf = YAML.load_file("#{CONFIG_ROOT}/graph.yaml")
     draw_js = graph_conf.map do |table_name, attrs|
@@ -35,6 +40,6 @@ class Server < Sinatra::Base
   end
 
   get '/reload' do
-    '["users"]'
+    (options.conf[:target_file] ||= TargetFile.new(settings.target_file)).gets
   end
 end

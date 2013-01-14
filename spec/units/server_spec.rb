@@ -21,12 +21,20 @@ describe 'GET /' do
 end
 
 describe 'GET /reload' do
-  before :all do
+  before do
+    tempfile = Tempfile.new('foo')
+    tempfile.write '[1, 2, 3]'
+    tempfile.close
+
+    Server.class_eval do
+      set :target_file, tempfile.path
+    end
+
     get '/reload'
   end
 
-  subject { last_response }
-
-  specify { subject.ok?.should be_true }
-  specify { subject.body.should be_present }
+  specify do
+    last_response.ok?.should be_true
+    last_response.body.should == "[1, 2, 3]"
+  end
 end

@@ -8,6 +8,12 @@ describe 'sql_log_visualizer command' do
     end
   end
 
+  describe "with --target-file option" do
+    it "output version number" do
+      proc { execute_command("--target-file") }.should_not raise_error
+    end
+  end
+
   def execute_command(*args)
     args = [args].flatten
     stdout_string = nil
